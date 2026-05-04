@@ -5,7 +5,8 @@
   "description": "Chiffrez et déchiffrez localement de courts messages avec une clé publique RSA + Support whatsapp chiffrement et dechiffrement à la volée",
 
   "icons": {
-    "32": "icons/coffre-32.png"
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png"
     
   },
 
@@ -24,7 +25,7 @@
 
   "browser_action": {
     "default_icon": {
-      "32": "icons/coffre-32.png"
+      "32": "icons/icon-32.png"
       
     },
     "default_title": "Coffre Crypto",
