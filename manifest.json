@@ -1,0 +1,60 @@
+{
+  "manifest_version": 2,
+  "name": "Coffre Crypto",
+  "version": "1.0.0",
+  "description": "Chiffrez et déchiffrez localement de courts messages avec une clé publique RSA + Support whatsapp chiffrement et dechiffrement à la volée",
+
+  "icons": {
+    "32": "icons/coffre-32.png"
+    
+  },
+
+  "permissions": [
+    "storage",
+    "clipboardWrite",
+    "https://web.whatsapp.com/*"
+  ],
+
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": true
+  },
+
+  "browser_action": {
+    "default_icon": {
+      "32": "icons/coffre-32.png"
+      
+    },
+    "default_title": "Coffre Crypto",
+    "default_popup": "popup/popup.html"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "https://web.whatsapp.com/*"
+      ],
+      "js": [
+        "whatsapp-content.js"
+      ],
+      "css": [
+        "whatsapp-content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "coffre-crypto@sadek-it.fr",
+      "strict_min_version": "109.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    }
+  }
+}

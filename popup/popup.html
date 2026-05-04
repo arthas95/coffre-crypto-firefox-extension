@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffre Crypto</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+<main class="popup">
+
+    <header class="header">
+        <div>
+            <h1>Coffre Crypto</h1>
+            <p>Envoyez et lisez des messages chiffrés avec une clé publique.</p>
+        </div>
+        <span class="badge">Sécurisé</span>
+    </header>
+
+    <!-- Navigation gérée par script.js avec data-window -->
+    <nav class="tabs">
+        <button type="button" class="tab active" id="tab-derive" data-window="derive">
+            Coffre
+        </button>
+
+        <button type="button" class="tab" id="tab-crypto" data-window="crypto">
+            Lire
+        </button>
+
+        <button type="button" class="tab" id="tab-envoyer" data-window="envoyer">
+            Envoyer
+        </button>
+
+        <button type="button" class="tab" id="tab-faq" data-window="faq">
+            Aide
+        </button>
+    </nav>
+
+    <!-- COFFRE -->
+    <section id="fenetre-derive" class="window active-window">
+        <h2>Mon coffre</h2>
+
+        <p class="description">
+            Votre mot de passe protège votre clé privée. Sans lui, personne ne peut lire vos messages.
+        </p>
+
+        <form class="form-box">
+            <label for="mdp">Mot de passe maître</label>
+
+            <input
+                type="password"
+                name="mdp"
+                id="mdp"
+                placeholder="Entrez votre mot de passe"
+                autocomplete="current-password"
+            >
+
+            <div class="button-stack">
+                <button type="button" class="primary-btn accent-btn" id="btn-generer-rsa">
+                    Créer mon coffre
+                </button>
+
+                <button type="button" class="secondary-btn" id="btn-verifier-key">
+                    Déverrouiller 1 heure
+                </button>
+            </div>
+        </form>
+
+        <div class="info-box compact">
+            <strong>Première fois ?</strong>
+            Entrez un mot de passe, puis cliquez sur “Créer mon coffre”.
+            Ensuite, utilisez “Déverrouiller 1 heure” pour lire vos messages.
+        </div>
+
+        <div class="actions-card">
+            <h3>Ma clé publique</h3>
+            <p>À donner à vos correspondants pour qu’ils puissent vous écrire.</p>
+
+            <div class="split-actions">
+                <button type="button" class="secondary-btn" id="btn-afficher-cle-pub">
+                    Afficher
+                </button>
+
+                <button type="button" class="secondary-btn" id="btn-copier-cle-pub">
+                    Copier
+                </button>
+            </div>
+        </div>
+
+        <div class="actions-card danger-card">
+            <h3>Verrouillage</h3>
+            <p>Supprime la clé privée de la mémoire temporaire.</p>
+
+            <button type="button" class="danger-btn" id="btn-verrouiller">
+                Verrouiller maintenant
+            </button>
+        </div>
+    </section>
+
+    <!-- LIRE -->
+    <section id="fenetre-crypto" class="window">
+        <h2>Lire un message</h2>
+
+        <p class="description">
+            Collez un message reçu. Il doit avoir été chiffré avec votre clé publique.
+        </p>
+
+        <form class="form-box">
+            <label for="messageAdechiffrer">Message chiffré reçu</label>
+
+            <textarea
+                id="messageAdechiffrer"
+                placeholder="Collez ici le message chiffré"
+            ></textarea>
+
+            <button type="button" class="primary-btn" id="btn-dechiffrer-message">
+                Déchiffrer
+            </button>
+
+            <label for="messageDechiffre" class="result-label">
+                Message lisible
+            </label>
+
+            <input
+                type="text"
+                id="messageDechiffre"
+                class="result-input"
+                placeholder="Le message apparaîtra ici"
+                readonly
+            >
+        </form>
+
+        <div class="info-box compact">
+            Si cela échoue, vérifiez que le coffre est déverrouillé et que le message a bien été chiffré pour vous.
+        </div>
+    </section>
+
+    <!-- ENVOYER -->
+    <section id="fenetre-envoyer" class="window">
+        <h2>Envoyer un message</h2>
+
+        <p class="description">
+            Collez la clé publique du destinataire, puis écrivez votre message.
+        </p>
+
+        <form class="form-box">
+            <label for="publicKeyText">Clé publique du destinataire</label>
+
+            <p id="publicKeyDisclaimer" class="disclaimer" style="display: none;"></p>
+
+            <textarea
+                id="publicKeyText"
+                class="small-textarea"
+                placeholder="Collez ici la clé publique du destinataire"
+            ></textarea>
+
+            <button type="button" class="secondary-btn" id="btn-enregistrer-cle-tier">
+                Enregistrer cette clé
+            </button>
+        </form>
+
+        <form class="form-box">
+            <label for="messagePourTier">Message à chiffrer</label>
+
+            <textarea
+                id="messagePourTier"
+                placeholder="Écrivez votre message court"
+            ></textarea>
+
+            <button type="button" class="primary-btn" id="btn-chiffrer-tier">
+                Chiffrer
+            </button>
+
+            <label for="messageChiffrePourTier" class="result-label">
+                Message chiffré à envoyer
+            </label>
+
+            <textarea
+                id="messageChiffrePourTier"
+                class="result-textarea"
+                placeholder="Le message chiffré apparaîtra ici"
+                readonly
+            ></textarea>
+
+            <button type="button" class="secondary-btn copy-btn" id="btn-copier-message-chiffre">
+                Copier le message chiffré
+            </button>
+        </form>
+
+        <div class="info-box compact">
+            Seul le destinataire possédant la clé privée correspondante pourra lire ce message.
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="fenetre-faq" class="window">
+        <h2>Aide rapide</h2>
+
+        <div class="faq-card">
+            <h3>Que dois-je partager ?</h3>
+            <p>Seulement votre clé publique. Elle sert aux autres pour vous écrire.</p>
+        </div>
+
+        <div class="faq-card">
+            <h3>Que dois-je garder secret ?</h3>
+            <p>Votre mot de passe maître et votre clé privée. Ne les envoyez jamais.</p>
+        </div>
+
+        <div class="faq-card">
+            <h3>Pourquoi déverrouiller ?</h3>
+            <p>Le déverrouillage garde votre clé privée en mémoire pendant 1 heure, puis elle est supprimée.</p>
+        </div>
+
+        <div class="faq-card">
+            <h3>Pourquoi un message peut échouer ?</h3>
+            <p>Il n’a peut-être pas été chiffré avec votre clé publique actuelle.</p>
+        </div>
+
+        <div class="faq-card">
+            <h3>Messages longs ?</h3>
+            <p>Cette version est prévue pour des messages courts. Une future version utilisera AES pour les longs textes.</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        Développé par
+        <a href="https://www.sadek-it.fr" target="_blank" rel="noopener noreferrer">
+            Adel Sadek
+        </a>
+    </footer>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>

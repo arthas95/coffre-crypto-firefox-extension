@@ -1,0 +1,82 @@
+#coffre-crypto-loaded {
+    position: fixed !important;
+    bottom: 12px !important;
+    left: 12px !important;
+    z-index: 999999 !important;
+    padding: 7px 10px !important;
+    border-radius: 999px !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    color: white !important;
+    background: linear-gradient(135deg, #2563eb, #7c3aed) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35) !important;
+}
+
+.coffre-crypto-btn {
+    display: block !important;
+    margin: 6px 8px 4px auto !important;
+    padding: 5px 10px !important;
+    border: none !important;
+    border-radius: 999px !important;
+    cursor: pointer !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #2563eb, #7c3aed) !important;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25) !important;
+    z-index: 99999 !important;
+}
+
+.coffre-crypto-btn:hover {
+    filter: brightness(1.1) !important;
+}
+
+.coffre-crypto-btn:disabled {
+    opacity: 0.7 !important;
+    cursor: wait !important;
+}
+
+.coffre-crypto-result {
+    margin: 6px 8px 4px auto !important;
+    padding: 8px 10px !important;
+    border-radius: 10px !important;
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+    color: #bbf7d0 !important;
+    background: rgba(2, 6, 23, 0.88) !important;
+    border: 1px solid rgba(34, 197, 94, 0.35) !important;
+    white-space: pre-wrap !important;
+    max-width: 320px !important;
+}
+
+.coffre-crypto-error {
+    color: #fecaca !important;
+    border-color: rgba(248, 113, 113, 0.4) !important;
+}
+#coffre-crypto-encrypt-btn {
+    position: absolute !important;
+    right: 70px !important;
+    bottom: 10px !important;
+    z-index: 999999 !important;
+
+    padding: 7px 12px !important;
+    border: none !important;
+    border-radius: 999px !important;
+
+    cursor: pointer !important;
+    font-size: 12px !important;
+    font-weight: 800 !important;
+
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #0f766e, #2563eb) !important;
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.28) !important;
+}
+
+#coffre-crypto-encrypt-btn:hover {
+    filter: brightness(1.1) !important;
+}
+
+#coffre-crypto-encrypt-btn:disabled {
+    opacity: 0.7 !important;
+    cursor: wait !important;
+}
